@@ -1,26 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
+import ImagesComponent from "./components/ImageComponent/ImagesComponent";
+import { rootReducer } from "./reducers/index";
+import { composeWithDevTools } from "redux-devtools-extension";
+import rootSaga from "./sagas/index";
+import Header from "./components/HeaderComponent/HeaderComponent";
+
+import "./App.css";
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware))
+);
+
+sagaMiddleware.run(rootSaga);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <div className="App">
+          <header className="App-header">
+            <Header title={"Unsplash with redux-saga"} />
+          </header>
+          <main>
+            <ImagesComponent />
+          </main>
+        </div>
+      </Provider>
     );
   }
 }
