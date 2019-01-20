@@ -6,7 +6,6 @@
     margin: 0;
   }
   .grid {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     padding: 25px;

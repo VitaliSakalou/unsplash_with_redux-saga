@@ -18,7 +18,7 @@ class ImagesComponent extends Component {
 
   render() {
     console.log(this.props.photos);
-    const { photos } = this.props;
+    const { photos, isLoading } = this.props;
     return (
       <div className="images">
         <section className="grid">
@@ -28,14 +28,19 @@ class ImagesComponent extends Component {
             );
           })}
         </section>
-        <Button title={"More photo"} cbFunction={this.loadImages} />
+        <Button
+          title={"More photo"}
+          cbFunction={this.loadImages}
+          isLoading={isLoading}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = store => ({
-  photos: store.photos
+  photos: store.photos,
+  isLoading: store.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({

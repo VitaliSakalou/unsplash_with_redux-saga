@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./ButtonComponent.scss";
 
-const Button = ({ cbFunction, title }) => {
+const Button = ({ cbFunction, title, isLoading }) => {
   return (
     <button className={"button"} onClick={cbFunction}>
-      {title}
+      {isLoading ? "Is loading..." : title}
     </button>
   );
 };
