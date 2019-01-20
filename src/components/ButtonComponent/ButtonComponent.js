@@ -4,7 +4,7 @@ import "./ButtonComponent.scss";
 
 const Button = ({ cbFunction, title, isLoading }) => {
   return (
-    <button className={"button"} onClick={cbFunction}>
+    <button className={"button"} onClick={cbFunction} disabled={isLoading}>
       {isLoading ? "Is loading..." : title}
     </button>
   );
