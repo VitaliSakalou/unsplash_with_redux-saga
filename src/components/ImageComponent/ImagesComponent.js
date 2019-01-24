@@ -17,7 +17,7 @@ class ImagesComponent extends Component {
   };
 
   render() {
-    console.log(this.props.photos);
+    // console.log(this.props.photos);
     const { photos, isLoading } = this.props;
     return (
       <div className="images">
